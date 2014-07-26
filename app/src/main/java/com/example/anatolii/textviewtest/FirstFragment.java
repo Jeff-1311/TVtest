@@ -15,12 +15,8 @@ public class FirstFragment extends Fragment {
     String TAG = "TextViewTest";
     TextView textView;
     Button button;
-MyTimer myTimer;
+    MyTimer myTimer;
 
-    public TextView getTextView()
-    {
-        return textView;
-    }
 
 
     @Override
@@ -28,7 +24,9 @@ MyTimer myTimer;
         View root = inflater.inflate(R.layout.first_fragment, container, false);
     //    textView = (TextView) root.findViewById(R.id.textView1);
         button = (Button) root.findViewById(R.id.button);
-        myTimer = new MyTimer(10000,1000,(TextView) root.findViewById(R.id.textView1));
+        textView  = (TextView) root.findViewById(R.id.textView1); // This View was not initialized
+
+        myTimer = new MyTimer(10000,1000,textView);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +34,7 @@ MyTimer myTimer;
 
                 android.util.Log.d(TAG, "button start");
 
-                textView.setText("some txt");
+                textView.setText("some txt"); // You need init all View
                 myTimer.start();
 
             }
